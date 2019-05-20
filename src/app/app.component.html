@@ -1,0 +1,90 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+
+</div>
+
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+  <label>
+    First Name:
+    <input type="date" formControlName="firstName">
+  </label>
+
+  <label>
+    Last Name:
+    <input type="date" formControlName="lastName">
+
+    <div *ngIf="profileForm.errors?.resultRevealed && (profileForm.touched || profileForm.dirty)" class="cross-validation-error-message alert alert-danger">
+      Name cannot match alter ego.
+  </div>
+  </label>
+
+  <div formGroupName="address">
+    <h3>Address</h3>
+
+    <label>
+      Street:
+      <input type="text" formControlName="street">
+    </label>
+
+    <label>
+      City:
+      <input type="text" formControlName="city">
+    </label>
+
+    <label>
+      State:
+      <input type="text" formControlName="state">
+    </label>
+
+    <label>
+      Zip Code:
+      <input type="text" formControlName="zip">
+    </label>
+  </div>
+
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+
+</form>
+
+<p>
+  Form Status: {{ profileForm.status}}
+</p>
+<p>---------------------------------------------------------------------------------</p>
+
+<p>
+  {{name.value}}
+</p>
+
+<label>
+  Name:
+  <input type="text" [formControl]="name" >
+</label>
+
+<p>
+  <button (click)="updateName()">Update Name</button>
+</p>
+
+<p>---------------------------------------------------------------------------------</p>
+
+<!-- <div formArrayName="aliases">
+  <h3>Aliases</h3> <button (click)="addAlias()">Add Alias</button>
+
+  <div *ngFor="let address of aliases.controls; let i=index">
+    The repeated alias template
+    <label>
+      Alias:
+      <input type="text" [formControlName]="i">
+    </label>
+  </div>
+</div>
+
+<p>
+  Form Status: {{ profileForm.status}}
+</p> -->
+
+<router-outlet></router-outlet>
